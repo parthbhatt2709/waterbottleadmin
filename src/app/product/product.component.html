@@ -1,0 +1,72 @@
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="Check">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox (change)="onCheckBoxChange(element)"></mat-checkbox>
+    </td>
+  </ng-container>
+
+<!-- Position Column -->
+<!-- <ng-container matColumnDef="pro_id">
+<th mat-header-cell *matHeaderCellDef> PRODUCT_ID </th>
+<td mat-cell *matCellDef="let element"> {{element.pro_id}} </td>
+</ng-container> -->
+
+<!-- Name Column -->
+<ng-container matColumnDef="pro_name">
+<th mat-header-cell *matHeaderCellDef> PRODUCT NAME </th>
+<td mat-cell *matCellDef="let element"> {{element.pro_name}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Images">
+  <th mat-header-cell *matHeaderCellDef> PRODUCT Images </th>
+  <td mat-cell *matCellDef="let element">
+ <img [src]="'http://localhost:3000/images/pro_img/'+element.Images" alt="Image Not Found"  width="150px" height="100px">
+</ng-container>
+
+<ng-container matColumnDef="pro_desc">
+  <th mat-header-cell *matHeaderCellDef> PRODUCT DESCRIPTION </th>
+  <td mat-cell *matCellDef="let element"> {{element.pro_desc}} </td>
+</ng-container>
+
+<ng-container matColumnDef="pro_mfg">
+  <th mat-header-cell *matHeaderCellDef> PRODUCT MFG </th>
+  <td mat-cell *matCellDef="let element"> {{element.pro_mfg}} </td>
+</ng-container>
+
+<ng-container matColumnDef="pro_price">
+  <th mat-header-cell *matHeaderCellDef> PRODUCT PRICE </th>
+  <td mat-cell *matCellDef="let element"> {{element.pro_price}} </td>
+</ng-container>
+
+
+<!-- Symbol Column -->
+<ng-container matColumnDef="action">
+<th mat-header-cell *matHeaderCellDef> ACTION </th>
+<td mat-cell *matCellDef="let element">
+  <button mat-icon-button (click)=onDelete(element) type="button">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-icon-button (click)=onUpdate(element) type="button">
+    <mat-icon>create</mat-icon>
+  </button>
+</td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[2,5,8,10]"></mat-paginator>
+<button mat-raised-button color="primary" class="mybutton" (click)=onAdd() type="button">
+<mat-icon>add</mat-icon>ADD NEW PRODUCT
+</button>
+<br>
+<br>
+<button mat-raised-button color="primary" class="mybutton" (click)=onDeleteAll() type="button">
+  <mat-icon>delete</mat-icon>DELETE ALL
+</button>
+

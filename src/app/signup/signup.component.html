@@ -1,0 +1,36 @@
+<div class="container">
+
+  <h1>Signup</h1>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSignup()" >
+    <div class="form-group" >
+      <input class="form-control" placeholder="Enter Email" formControlName="user_email" >
+      <label class="alert alert-danger" *ngIf="signupForm.get('user_email').hasError('required') && !signupForm.get('user_email').pristine" >Email is required</label>
+      <label class="alert alert-danger" *ngIf="signupForm.get('user_email').hasError('email') && !signupForm.get('user_email').pristine" >Email is Invalid</label>
+    </div>
+    <div formGroupName="password_group" class="form-group" >
+      <input class="form-control" type="password" placeholder="Enter Password" formControlName="user_password" >
+      <input class="form-control" type="password" placeholder="Enter confirm Password" formControlName="user_confirm_password" >
+    <label class="alert alert-danger" *ngIf="signupForm.get('password_group').hasError('sarkhanathi')"  >Both password and confirm password should be same.</label>
+    </div>
+    <div class="form-group" >
+      <input class="form-control" placeholder="Enter Name" formControlName="customer_name" >
+      <label class="alert alert-danger" *ngIf="signupForm.get('customer_name').hasError('required') && !signupForm.get('customer_name').pristine" >Name is required</label>
+      <label class="alert alert-danger" *ngIf="signupForm.get('customer_name').hasError('minlength') && !signupForm.get('customer_name').pristine" >Name shoul be > 5</label>
+      <label class="alert alert-danger" *ngIf="signupForm.get('customer_name').hasError('pattern') && !signupForm.get('customer_name').pristine" > Only Chars</label>
+    </div>
+    <div class="form-group" >
+      <input class="form-control" placeholder="Enter Address" formControlName="customer_address" >
+    </div>
+    <div class="form-group" >
+      <input class="form-control" placeholder="Enter Mobile" formControlName="customer_mobileno" >
+      <label class="alert alert-danger" *ngIf="signupForm.get('customer_mobileno').hasError('required') && !signupForm.get('customer_mobileno').pristine" >mobile no is required</label>
+      <label class="alert alert-danger" *ngIf="signupForm.get('customer_mobileno').hasError('maxlength')" >only 10 digits</label>
+      <label class="alert alert-danger" *ngIf="signupForm.get('customer_mobileno').hasError('pattern') " > Only digits</label>
+
+    </div>
+    <div class="form-group" >
+      <button [disabled]="!signupForm.valid" type="submit" class="btn btn-primary" >Signup</button>
+    </div>
+  </form>
+</div>

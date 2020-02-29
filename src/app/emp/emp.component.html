@@ -1,0 +1,62 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="Check">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox (change)="onCheckBoxChange(element)"></mat-checkbox>
+    </td>
+  </ng-container>
+
+
+<!-- Position Column -->
+<!-- <ng-container matColumnDef="emp_id">
+<th mat-header-cell *matHeaderCellDef> EMPLOYEE_ID </th>
+<td mat-cell *matCellDef="let element"> {{element.emp_id}} </td>
+</ng-container> -->
+
+<!-- Name Column -->
+<ng-container matColumnDef="emp_name">
+<th mat-header-cell *matHeaderCellDef> EMPLOYEE NAME </th>
+<td mat-cell *matCellDef="let element"> {{element.emp_name}} </td>
+</ng-container>
+
+<!-- Weight Column -->
+<ng-container matColumnDef="mobile_no">
+<th mat-header-cell *matHeaderCellDef> MOBILE NO</th>
+<td mat-cell *matCellDef="let element"> {{element.mobile_no}} </td>
+</ng-container>
+
+<ng-container matColumnDef="user_email">
+    <th mat-header-cell *matHeaderCellDef>USER EMAIl </th>
+    <td mat-cell *matCellDef="let element"> {{element.fk_user_email}} </td>
+  </ng-container>
+
+<!-- Symbol Column -->
+<ng-container matColumnDef="action">
+<th mat-header-cell *matHeaderCellDef> ACTION </th>
+<td mat-cell *matCellDef="let element">
+  <button mat-icon-button (click)=onDelete(element) type="button">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-icon-button (click)=onUpdate(element) type="button">
+    <mat-icon>create</mat-icon>
+  </button>
+</td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[2,5,8,10]"></mat-paginator>
+<button mat-raised-button color="primary" class="mybutton" (click)=onAdd() type="button">
+<mat-icon>add</mat-icon>ADD NEW EMPLOYEE
+</button>
+<br>
+<br>
+<button mat-raised-button color="primary" class="mybutton" (click)=onDeleteAll() type="button">
+  <mat-icon>delete</mat-icon>DELETE ALL
+</button>
+
+

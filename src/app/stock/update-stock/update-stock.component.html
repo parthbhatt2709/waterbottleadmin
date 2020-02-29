@@ -1,0 +1,49 @@
+<form class="container" (ngSubmit)="onupdatestock(f)" #f="ngForm">
+  <!-- <mat-form-field>
+      <input matInput placeholder="ENTER ID" [(ngModel)]="stock_id" name="stock_id">
+    </mat-form-field>
+    <br> -->
+  <mat-form-field>
+    <mat-label>ENTER A CUSTOMER NAME</mat-label>
+    <mat-select name="fk_customer_id" [(ngModel)]="selectedCustomer">
+      <mat-option *ngFor="let item of customer_arr" [value]="item.customer_id">
+        {{item.customer_name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>ENTER A EMPLOYEE NAME</mat-label>
+    <mat-select name="fk_emp_id" [(ngModel)]="selectedEmployee">
+      <mat-option *ngFor="let item of emp_arr" [value]="item.emp_id">
+        {{item.emp_name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="ENTER Qty" [(ngModel)]="stock_qty" required pattern="[0-9]*" name="stock_qty" #stockqty="ngModel" required>
+    <label class="alert alert-danger" *ngIf="stockqty.hasError('required') && !stockqty.pristine">Qty is required</label>
+        <label class="alert alert-danger" *ngIf="stockqty.hasError('pattern') && ! stockqty.pristine">only number</label>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="CHOOSE A DATE" [(ngModel)]="stock_date" name="stock_date" #stockdate="ngModel" required>
+    <label class="alert alert-danger" *ngIf="stockdate.hasError('required') && !stockdate.pristine">Date is required</label>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+     <mat-select name="fk_pro_id" [(ngModel)]="selectedProduct">
+    <mat-option *ngFor="let item of pro_arr" [value]="item.pro_id">
+      {{item.pro_name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<br>
+<div class="form-group" >
+  <button [disabled]="!f.valid" class="btn btn-primary" type="submit">update</button>
+  </div>
+</form>

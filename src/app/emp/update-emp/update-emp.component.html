@@ -1,0 +1,21 @@
+<form [formGroup]="emp_update" (ngSubmit)="onEmpSubmit()" class="container">
+  <mat-form-field>
+    <input matInput placeholder="ENTER NAME" formControlName="emp_name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="ENTER MOBILE NO" formControlName="mobile_no">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>ENTER A USER EMAIL</mat-label>
+    <mat-select name="fk_user_email" [(ngModel)]="selected">
+      <mat-option *ngFor="let item of user_arr" [value]="item.user_email">
+        {{item.user_email}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <button type="submit" mat-button color="primary">UPDATE</button>
+</form>

@@ -1,0 +1,55 @@
+
+  <h1>Add Order</h1>
+
+  <form [formGroup]="orderForm" (ngSubmit)="onAddOrder()">
+    <div class="form-group">
+      <label>Enter Product::</label>
+      <select placeholder="Enter Product" class="form-control" formControlName="fk_pro_id">
+        <option *ngFor="let item of product_arr" [value]="item.pro_id">
+          {{item.pro_name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Quantity" formControlName="qty">
+    </div>
+    <div class="form-group">
+      <input type="date" class="form-control" placeholder="Enter Order Date" formControlName="order_date">
+    </div>
+    <div class="form-group">
+      <label>Enter Customer::</label>
+      <select placeholder="Enter Customer" class="form-control" formControlName="fk_customer_id">
+        <option *ngFor="let item of customer_arr" [value]="item.customer_id">
+          {{item.customer_name}}
+        </option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+      <input class="form-control" placeholder="Enter order status" formControlName="order_status">
+    </div> -->
+    <!-- <div class="form-group">
+      <label>Enter Employee::</label>
+      <select placeholder="Enter Employee" class="form-control" formControlName="fk_emp_id">
+        <option *ngFor="let item of employee_arr" [value]="item.emp_id">
+          {{item.emp_name}}
+        </option>
+      </select>
+    </div> -->
+    <div class="form-group">
+      <input type="date" class="form-control" placeholder="Enter Delivery Date" formControlName="delivery_date">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter status" formControlName="order_status">
+    </div>
+    <!-- <mat-form-field>
+      <input matInput placeholder="ENTER STATUS" [(ngModel)]="order_status" name="order_status">
+      <mat-select [(ngModel)]="order_status" name="order_status" placeholder="ENTER ORDER STATUS">
+          <mat-option value="done">DONE</mat-option>
+          <mat-option value="pending">PENDING</mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    <div class="form-group">
+      <button [disabled]="!orderForm.valid" type="submit" class="btn btn-primary">AddOrder</button>
+    </div>
+  </form>
+

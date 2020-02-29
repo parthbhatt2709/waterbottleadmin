@@ -1,0 +1,47 @@
+<form class="container" (ngSubmit)="onupdateorder(f)" #f="ngForm">
+  <mat-form-field>
+    <mat-select name="fk_pro_id" [(ngModel)]="selectedProduct">
+   <mat-option *ngFor="let item of pro_arr" [value]="item.pro_id">
+     {{item.pro_name}}
+   </mat-option>
+ </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <input matInput placeholder="ENTER QUANTITY"  required pattern="[0-9]*" [(ngModel)]="qty" name="qty" #orderqty="ngModel" required>
+  <label class="alert alert-danger" *ngIf="orderqty.hasError('required') && !orderqty.pristine">Qty is required</label>
+        <label class="alert alert-danger" *ngIf="orderqty.hasError('pattern') && ! orderqty.pristine">only number</label>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="CHOOSE A DATE" [(ngModel)]="order_date" name="order_date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>ENTER A CUSTOMER NAME</mat-label>
+    <mat-select name="fk_customer_id" [(ngModel)]="selectedCustomer">
+      <mat-option *ngFor="let item of customer_arr" [value]="item.customer_id">
+        {{item.customer_name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!-- <mat-form-field>
+    <mat-label>ENTER A EMPLOYEE NAME</mat-label>
+    <mat-select name="fk_emp_id" [(ngModel)]="selectedEmployee">
+      <mat-option *ngFor="let item of emp_arr" [value]="item.emp_id">
+        {{item.emp_name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br> -->
+
+  <mat-form-field>
+    <input matInput placeholder="ENTER ORDER STATUS" [(ngModel)]="order_status" name="order_status" #orderstatus="ngModel" required>
+    <label class="alert alert-danger" *ngIf="orderstatus.hasError('required') && !orderstatus.pristine">Qty is required</label>
+  </mat-form-field>
+  <br>
+  <button [disabled]="!f.valid" class="btn btn-primary" type="submit">UPDATE</button>
+</form>

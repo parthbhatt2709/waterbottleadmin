@@ -1,0 +1,40 @@
+ <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <!-- <a mat-list-item routerLink="/signup"><i class="fas fa-user-plus"></i>SIGNUP</a> -->
+      <a mat-list-item routerLink="/nav"><i class="fas fa-user"></i>USER</a>
+      <a mat-list-item routerLink="/nav/customer"><i class="fas fa-users"></i>CUSTOMER</a>
+      <a mat-list-item routerLink="/nav/emp"><i class="fas fa-male"></i>EMPLOYEE</a>
+      <a mat-list-item routerLink="/nav/product"><i class="fab fa-product-hunt"></i>PRODUCT</a>
+      <a mat-list-item routerLink="/nav/stock"><i class="fas fa-boxes"></i>STOCK</a>
+       <a mat-list-item routerLink="/nav/order"><i class="fas fa-circle"></i>ORDER</a>
+     <!-- <a mat-list-item routerLink="/nav/orderdelivery"><i class="fas fa-truck"></i>ORDER DELIVERY</a> -->
+      <a mat-list-item routerLink="/nav/bill"><i class="fas fa-file-invoice-dollar"></i>BILL</a>
+      <a mat-list-item (click)="onLogoutClick()"><i class="fas fa-sign-out-alt"></i>LOG OUT</a>
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>WATER BOTTLE SUPPLY MANAGEMENT SYSTEM</span>
+      <br>
+       <h1>Welcome,{{user_email}}</h1>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

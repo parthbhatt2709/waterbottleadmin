@@ -1,0 +1,37 @@
+<form (ngSubmit)="onAddcustomer(f)" #f="ngForm">
+    <mat-form-field>
+        <input matInput placeholder="ENTER NAME" [(ngModel)]="customer_name" name="customer_name" #custname="ngModel" required>
+        <label class="alert alert-danger" *ngIf="custname.hasError('required') && !custname.pristine">Name is required</label>
+        <!-- <label class="alert alert-danger" *ngIf="custname.hasError('pattern') && ! custname.pristine">only number</label>  -->
+      </mat-form-field>
+      <br>
+      <mat-form-field >
+          <input matInput  placeholder="ENTER ADDRESS" [(ngModel)]="customer_address" name="customer_address">
+        </mat-form-field>
+        <br>
+        <mat-form-field >
+            <input matInput  placeholder="ENTER MOBILENO" required pattern="[0-9]*" [(ngModel)]="customer_mobileno" name="customer_mobileno" #custmobno="ngModel" required >
+            <label class="alert alert-danger" *ngIf="custmobno.hasError('pattern') && ! custmobno.pristine">only number</label>
+          </mat-form-field>
+        <br>
+        <mat-form-field>
+        <mat-label>ENTER USER DETAILS:</mat-label>
+        <mat-select name="fk_user_email" [(ngModel)]="selected" >
+          <mat-option *ngFor="let item of user_arr" [value]="item.user_email"  >
+            {{item.user_email}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        <!-- <mat-form-field>
+
+            <mat-select [(ngModel)]="selected" name="selected" placeholder="ENTER USER TYPE">
+                <mat-option *ngFor="let item of user_arr" [value]="item.user_email">
+                    {{item.user_type}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field> -->
+        <br>
+          <div class="form-group" >
+            <button [disabled]="!f.valid" class="btn btn-primary" type="submit">ADD</button>
+          </div>
+  </form>

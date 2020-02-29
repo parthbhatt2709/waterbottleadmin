@@ -1,0 +1,29 @@
+<form (ngSubmit)="onAddproduct(f)" #f="ngForm">
+  <!-- <mat-form-field >
+    <input matInput  placeholder="ENTER ID" [(ngModel)]="pro_id" name="pro_id">
+  </mat-form-field> -->
+  <mat-form-field>
+      <input matInput placeholder="ENTER NAME" [(ngModel)]="pro_name" name="pro_name" #proname="ngModel" required>
+      <label class="alert alert-danger" *ngIf="proname.hasError('required') && !proname.pristine">Name is required</label>
+    </mat-form-field>
+    <br>
+    <div>
+
+      <input type="file" [(ngModel)]="Images"name="Images" (change)="onchange($event)" class="form-control">
+  </div>
+  <mat-form-field>
+    <input matInput placeholder="ENTER PRODUCT DESCRIPTION " [(ngModel)]="pro_desc" name="pro_desc" #prodes="ngModel" required>
+    <label class="alert alert-danger" *ngIf="prodes.hasError('required') && !prodes.pristine">Description is required</label>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="ENTER PRODUCT MFG" [(ngModel)]="pro_mfg" name="pro_mfg">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="ENTER PRODUCT PRICE" [(ngModel)]="pro_price" name="pro_price" #proprice="ngModel" required>
+    <label class="alert alert-danger" *ngIf="proprice.hasError('required') && !proprice.pristine">Price is required</label>
+  </mat-form-field>
+  <br>
+  <div class="form-group" >
+    <button [disabled]="!f.valid" class="btn btn-primary" type="submit">ADD</button>
+    </div>
+</form>
